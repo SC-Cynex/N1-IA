@@ -1,0 +1,1 @@
+# Versão 1 do Leilão de Entregas: Criar um algoritmo básico, sem a necessidade de cálculos otimizados para obter o melhor resultado entregas e bônus.
