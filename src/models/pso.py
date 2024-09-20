@@ -45,7 +45,6 @@ class PSO:
                 prev_delivery = self.deliveries[sequence[i - 1]]
                 prev_destination = prev_delivery[1]
 
-                # Map delivery points to indices
                 start_idx = self.delivery_point_to_index(prev_destination)
                 end_idx = self.delivery_point_to_index(origin)
 

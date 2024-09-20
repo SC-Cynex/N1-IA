@@ -1,30 +1,34 @@
 import os
 from models.connection import Connection
 from models.scheduling import Scheduling
-from models.optimize import Optimize
+from view.version1 import version1
+from view.version2 import version2
+from view.comparation import comparation
 
 def main_menu():
     connection = Connection()
     scheduling = Scheduling()
-    
+
     while True:
         os.system('cls')
         print('''
-   _____   ___  _ _____  __    ___  ___ _    _____   _____ _____   __          ___ 
-  / __\ \ / / \| | __\ \/ /   |   \| __| |  |_ _\ \ / / __| _ \ \ / /     __ _|_  )
- | (__ \ V /| .` | _| >  <    | |) | _|| |__ | | \ V /| _||   /\ V /   _  \ V // / 
-  \___| |_| |_|\_|___/_/\_\   |___/|___|____|___| \_/ |___|_|_\ |_|   (_)  \_//___|                                                                                                                                                                              
+   _____   ___  _ _____  __    ___  ___ _    _____   _____ _____   __ 
+  / __\ \ / / \| | __\ \/ /   |   \| __| |  |_ _\ \ / / __| _ \ \ / / 
+ | (__ \ V /| .` | _| >  <    | |) | _|| |__ | | \ V /| _||   /\ V /  
+  \___| |_| |_|\_|___/_/\_\   |___/|___|____|___| \_/ |___|_|_\ |_|    
 
         [1] - Setar Conexões
         [2] - Visualizar Conexões
         [3] - Setar Agendamentos
         [4] - Visualizar Agendamentos
-        [5] - Otimizar Rotas
+        [5] - Versão 1 - Algoritmo Básico
+        [6] - Versão 2 - Algoritmo com PSO
+        [7] - Comparar as duas versões
         [0] - Sair
-            ''')
-        option = int(input("\tOpção: "))
+              ''')
+        optionVersion = int(input("\tOpção: "))
 
-        match option:
+        match optionVersion:
             case 0:
                 break
             case 1:
@@ -36,34 +40,17 @@ def main_menu():
             case 4:
                 scheduling.get_scheduling()
             case 5:
-                if not connection.connections or not scheduling.schedules:
-                    print("\tPrimeiro defina as conexões e o agendamento.")
-                    input("\n\tPressione Enter para continuar...")
-                    continue
-
-                print("\n\tConjuntos de Conexões Disponíveis:")
-                for key in connection.connections.keys():
-                    print(f"\t- {key}")
-                conn_key = input("\n\tDigite o nome ou identificação do conjunto de conexões que deseja usar: ")
-
-                if conn_key not in connection.connections:
-                    print("\tConjunto de conexões não encontrado.")
-                    input("\n\tPressione Enter para continuar...")
-                    continue
-
-                print("\n\tAgendamentos Disponíveis:")
-                for key in scheduling.schedules.keys():
-                    print(f"\t- {key}")
-                sched_key = input("\n\tDigite o nome ou identificação do agendamento que deseja usar: ")
-
-                if sched_key not in scheduling.schedules:
-                    print("\tAgendamento não encontrado.")
-                    input("\n\tPressione Enter para continuar...")
-                    continue
-
-                optimizer = Optimize(connection.connections[conn_key], scheduling.schedules[sched_key])
-                optimizer.optimize_routes()
-                
+                version1(connection, scheduling)
+                input("\n\tPressione Enter para continuar...")
+                continue
+            case 6:
+                version2(connection, scheduling)
+                input("\n\tPressione Enter para continuar...")
+                continue
+            case 7:
+                comparation(connection, scheduling)
+                input("\n\tPressione Enter para continuar...")
+                continue
             case _:
                 print("\tOpção inválida. Tente novamente.")
                 input("\n\tPressione Enter para continuar...")

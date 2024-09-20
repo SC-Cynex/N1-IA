@@ -8,10 +8,10 @@ class Scheduling:
 
         delivery_schedule = []
         for i in range(count):
-            origin = input(f"\tDigite o ponto de origem para a entrega {i+1}: ")
-            destination = input(f"\tDigite o ponto de destino para a entrega {i+1}: ")
-            time = int(input(f"\tDigite o tempo estimado (em minutos) para a entrega {i+1}: "))
-            bonus = int(input(f"\tDigite o bônus para a entrega {i+1}: "))
+            origin = input(f"\tDigite o ponto de origem para a entrega {chr(65 + i)} [A = 0, B = 1]: ")
+            destination = input(f"\tDigite o ponto de destino para a entrega {chr(65 + i)} [A = 0, B = 1]: ")
+            time = int(input(f"\tDigite o tempo estimado (em minutos) para a entrega {chr(65 + i)}: "))
+            bonus = int(input(f"\tDigite o bônus para a entrega {chr(65 + i)}: "))
 
             delivery_schedule.append((origin, destination, time, bonus))
 

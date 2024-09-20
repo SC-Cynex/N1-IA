@@ -11,7 +11,7 @@ class Connection:
         for i in range(count):
             ln = []
             for j in range(count):
-                time = int(input(f"\tDigite o tempo de viagem entre o ponto {i+1} e o ponto {j+1} (em minutos, ou 0 se não houver conexão): "))
+                time = int(input(f"\tDigite o tempo de viagem entre o ponto {chr(65 + i)} e o ponto {chr(65 + j)} (em minutos, ou 0 se não houver conexão): "))
                 ln.append(time)
             connection_list.append(ln)
         

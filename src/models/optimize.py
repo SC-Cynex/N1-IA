@@ -1,5 +1,4 @@
 from models.pso import PSO
-from models.graphics import visualize_results
 
 class Optimize:
     def __init__(self, connections, deliveries):
@@ -10,7 +9,7 @@ class Optimize:
         if not self.connections or not self.deliveries:
             print("\tDefina primeiro as conexões e os agendamentos de entregas.")
             input("\n\tPressione Enter para continuar...")
-            return
+            return 0
 
         pso = PSO(self.connections, self.deliveries)
         best_route, best_profit = pso.optimize()
@@ -24,6 +23,5 @@ class Optimize:
         
         print(f"\n\tBônus Total: {total_bonuses}")
 
-        visualize_results(best_route, best_profit, self.deliveries)
-        input("\n\tPressione Enter para continuar...")
+        return total_bonuses
 
